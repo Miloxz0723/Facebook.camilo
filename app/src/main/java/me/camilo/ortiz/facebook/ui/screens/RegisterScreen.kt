@@ -1,5 +1,6 @@
 package me.camilo.ortiz.facebook.ui.screens
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.selection.selectable
@@ -10,6 +11,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
@@ -20,7 +22,7 @@ import androidx.navigation.NavController
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun FacebookRegisterScreen(navController: NavController) {
+fun FacebookRegisterScreen(onClickBack : () -> Unit) {
     var firstName by remember { mutableStateOf("") }
     var lastName by remember { mutableStateOf("") }
     var emailOrPhone by remember { mutableStateOf("") }
@@ -36,9 +38,9 @@ fun FacebookRegisterScreen(navController: NavController) {
                 title = { },
                 navigationIcon = {
                     IconButton(onClick = {
-                        navController.popBackStack()
+                        onClickBack()
                     }) {
-                        Text("Ir Arás")
+                        Image(painterResource(R.drawable.atras), contentDescription = null)
                     }
 
                 },

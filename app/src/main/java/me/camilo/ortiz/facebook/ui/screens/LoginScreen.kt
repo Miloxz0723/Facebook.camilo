@@ -2,8 +2,10 @@ package me.camilo.ortiz.facebook.ui.screens
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
+
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -27,8 +29,9 @@ private val FacebookBorderGray = Color(0xFFCCD0D5)
 private val FacebookTextGray = Color(0xFF606770)
 private val FacebookDarkText = Color(0xFF1C1E21)
 
+
 @Composable
-fun FacebookLoginScreen(navController: NavController) {
+fun FacebookLoginScreen(onClickRegister : () -> Unit, onClickIniciarSesion: () -> Unit) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var passwordVisible by remember { mutableStateOf(false) }
@@ -81,12 +84,15 @@ fun FacebookLoginScreen(navController: NavController) {
 
         // Botón Iniciar sesión
         Button(
-            onClick = {  },
+            onClick = {
+                onClickIniciarSesion()
+            },
             modifier = Modifier
                 .fillMaxWidth()
                 .height(48.dp),
             colors = ButtonDefaults.buttonColors(containerColor = FacebookBlue),
             shape = RoundedCornerShape(6.dp),
+            //enabled = email.isNotBlank() && password.isNotBlank()
         ) {
             Text(
                 text = "Iniciar sesión",
@@ -137,7 +143,7 @@ fun FacebookLoginScreen(navController: NavController) {
         // Botón Crear cuenta nueva
         Button(
             onClick = {
-                navController.navigate(route = "register")
+                onClickRegister()
             },
             modifier = Modifier
                 .fillMaxWidth()
@@ -198,7 +204,9 @@ private fun FacebookTextField(
         ),
         trailingIcon = if (isPassword) {
             {
-                IconButton(onClick = onTogglePasswordVisibility) {}
+                IconButton(onClick = onTogglePasswordVisibility) {
+
+                }
             }
         } else null,
         colors = OutlinedTextFieldDefaults.colors(
