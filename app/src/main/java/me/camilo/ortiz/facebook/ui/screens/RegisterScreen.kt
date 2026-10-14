@@ -19,6 +19,7 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import me.camilo.ortiz.facebook.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -39,9 +40,7 @@ fun FacebookRegisterScreen(onClickBack : () -> Unit) {
                 navigationIcon = {
                     IconButton(onClick = {
                         onClickBack()
-                    }) {
-                        Image(painterResource(R.drawable.atras), contentDescription = null)
-                    }
+                    }) { Image(painterResource(R.drawable.mudkip), contentDescription = null) }
 
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
