@@ -10,6 +10,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import me.camilo.ortiz.facebook.ui.screens.FacebookLoginScreen
+import me.camilo.ortiz.facebook.ui.screens.FacebookRecoverPasswordScreen
 import me.camilo.ortiz.facebook.ui.screens.FacebookRegisterScreen
 import me.camilo.ortiz.facebook.ui.screens.FeedScreen
 
@@ -18,8 +19,6 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-
-
 
             val myNavController = rememberNavController()
 
@@ -35,6 +34,9 @@ class MainActivity : ComponentActivity() {
                         },
                         onClickIniciarSesion = {
                             myNavController.navigate(route = "feed")
+                        },
+                        onClickForgotPassword = {
+                            myNavController.navigate(route = "recover_password")
                         }
                     )
                 }
@@ -45,10 +47,20 @@ class MainActivity : ComponentActivity() {
                         }
                     )
                 }
+                composable(route = "recover_password") {
+                    FacebookRecoverPasswordScreen(
+                        onClickBack = {
+                            myNavController.popBackStack()
+                        },
+                        onSendRecovery = { inputData ->
+                            // Enviar datos al servicio de autenticación y volver al login
+                            myNavController.popBackStack()
+                        }
+                    )
+                }
                 composable(route = "feed") {
                     FeedScreen()
                 }
-
             }
         }
     }
