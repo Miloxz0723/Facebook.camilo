@@ -33,7 +33,9 @@ class MainActivity : ComponentActivity() {
                             myNavController.navigate(route = "register")
                         },
                         onClickIniciarSesion = {
-                            myNavController.navigate(route = "feed")
+                            myNavController.navigate(route = "feed"){
+                                popUpTo(route = "login"){ inclusive = true}
+                            }
                         },
                         onClickForgotPassword = {
                             myNavController.navigate(route = "recover_password")
